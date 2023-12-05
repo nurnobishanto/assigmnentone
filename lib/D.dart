@@ -36,9 +36,12 @@ class Teacher extends Person {
   List<String> coursesTaught;
 
   // Constructor
-  Teacher(String name, int age, String address, Role role, this.teacherID, this.coursesTaught)
-      : super(name, age, address, role);
+  Teacher(String name, int age, String address, String teacherID, List<String> coursesTaught)
+      : this.teacherID = teacherID,
+        this.coursesTaught = coursesTaught,
+        super(name, age, address, TeacherRole());
 
+  // Override displayRole method
   @override
   void displayRole() {
     print('Role: Teacher');
@@ -53,9 +56,17 @@ class Teacher extends Person {
   }
 }
 
+// Concrete implementation of Role for a Teacher
+class TeacherRole implements Role {
+  @override
+  void displayRole() {
+    print('Teacher');
+  }
+}
+
 void main() {
   // Example usage
-  var teacher = Teacher('Jane Smith', 35, '456 Oak St', Role(), 'T123', ['Mathematics', 'Physics', 'Chemistry']);
+  var teacher = Teacher('Engrn Nurnobi Hosen', 24, 'Mirpur 2, Dhaka', 'T123', ['Mathematics', 'Physics', 'Chemistry']);
 
   teacher.printData();
   teacher.displayCoursesTaught();
